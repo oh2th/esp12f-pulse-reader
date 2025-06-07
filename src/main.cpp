@@ -3,7 +3,6 @@
 #include <WiFiManager.h>
 #include <PubSubClient.h>
 #include <EEPROM.h>
-#include <ArduinoOTA.h>
 
 // --- CONFIGURATION ---
 #define PULSE_PIN D6
@@ -112,16 +111,10 @@ void setup() {
   client.setCallback(callback);
 
   meter_water = loadMeterWater(initial_meter_water);
-
-  // --- OTA SETUP ---
-  ArduinoOTA.setHostname("esp12f-pulse-reader");
-  ArduinoOTA.begin();
 }
 
 // --- LOOP ---
 void loop() {
-  ArduinoOTA.handle(); // <-- Add this line for OTA to work
-
   if (!client.connected()) reconnect();
   client.loop();
 

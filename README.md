@@ -52,16 +52,6 @@ esp12f-pulse-reader
 5. **Configure via Portal**:
    On first boot, connect to the `ESP12F-Setup` WiFi AP. Use the captive portal to enter your WiFi credentials, MQTT broker/port, MQTT base topic (e.g., `homey/water-meter`), and the initial meter value (from your physical water meter).
 
-6. **OTA Updates (After First Upload)**:
-   - Make sure your ESP12-F is connected to your WiFi network.
-   - To upload new firmware wirelessly, use:
-
-     ```sh
-     pio run --target upload --upload-port esp12f-pulse-reader.local
-     ```
-
-     (Replace `esp12f-pulse-reader.local` with your device's hostname or IP if needed.)
-
 ## Usage
 
 - The device will connect to your WiFi and MQTT broker.
@@ -72,14 +62,10 @@ esp12f-pulse-reader
   ```
 
   to the `<base_topic>/state` MQTT topic (e.g., `homey/water-meter/state`).
+
   - **Note:** If your water meter outputs 1 pulse per 10 liters, `measure_water` will be `pulses * 10`.
+
 - To set the meter value remotely, publish a float (e.g., `1.234`) to the `<base_topic>/set` topic (e.g., `homey/water-meter/set`).
-
-## OTA Updates
-
-- OTA (Over-The-Air) updates are enabled by default.
-- The device advertises itself as `esp12f-pulse-reader.local` for OTA uploads.
-- You can also use the device's IP address for OTA uploads.
 
 ## License
 
